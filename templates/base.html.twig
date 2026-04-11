@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="layerdrops">
+
+    <title>МАСТЕРА || СТО ТЕМУР</title>
+
+    {% include 'includes/links.html.twig' %}
+</head>
+
+<style>
+    .worker-card__content {
+        padding-bottom: 20px;
+    }
+
+    .worker-card__img {
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+    .worker-card__img > img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        display: block;
+    }
+
+    .worker-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+        transition: .3s ease;
+        height: 100%;
+    }
+
+    .worker-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, .1);
+    }
+
+    .worker-card__content {
+        padding: 20px;
+    }
+
+    .worker-card__name {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+
+    .worker-card__name a {
+        color: #0f172a;
+        text-decoration: none;
+    }
+
+    .worker-card__position {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: #f3f4f6;
+        color: #374151;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .worker-card__desc {
+        color: #6b7280;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 18px;
+        min-height: 78px;
+    }
+
+    .worker-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .worker-card__meta-item {
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: #f8fafc;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .worker-card__actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .worker-card__actions .drivschol-btn {
+        min-width: 160px;
+        text-align: center;
+    }
+
+    .worker-empty {
+        text-align: center;
+        padding: 40px 20px;
+        color: #64748b;
+        font-size: 18px;
+    }
+
+    .img-responsible {
+        width: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        object-fit: cover;
+    }
+</style>
+
+<body class="custom-cursor">
+
+<div class="preloader">
+    <div class="preloader__image" style="background-image: url(/images/loader.png);"></div>
+</div>
+
+<div class="page-wrapper">
+
+    {% include 'includes/header.html.twig' %}
+
+    <section class="page-header">
+        <div class="page-header__bg" style="background-image: url(/assets/images/backgrounds/1bg.jpg); background-position: 0 70%;"></div>
+        <div class="container">
+            <h2 class="page-header__title">Наши мастера</h2>
+            <ul class="drivschol-breadcrumb list-unstyled">
+                <li><a href="/">Главная</a></li>
+                <li><span>Мастера</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-one product-one--page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+
+                    <div class="row gutter-y-30" id="workers">
+                        {% for worker in workers %}
+                            <div class="col-md-6 col-lg-4 worker-col">
+                                <div class="worker-card wow fadeInUp" data-wow-duration="1500ms">
+
+                                    <!-- IMAGE -->
+                                    <div class="worker-card__img">
+                                        <img
+                                                src="{{ worker.img ? asset('img/workers/' ~ worker.img) : asset('assets/images/team/team-default.jpg') }}"
+                                                class="img-responsible"
+                                                alt="{{ worker.name }}"
+                                        >
+                                    </div>
+
+                                    <div class="worker-card__content">
+
+                                        <!-- NAME -->
+                                        <h4 class="worker-card__name">
+                                            {{ worker.name }} {{ worker.surname }}
+                                        </h4>
+
+                                        <!-- PHONE -->
+                                        {% if worker.phoneNumber %}
+                                            <p class="worker-phone">{{ worker.phoneNumber }}</p>
+                                        {% endif %}
+
+                                        <!-- POSITION -->
+
+
+                                        <!-- DESCRIPTION -->
+                                        <div class="worker-card__desc">
+                                            {{ worker.description ?: 'Опытный специалист нашей команды.' }}
+                                        </div>
+
+                                        <!-- SERVICES (🔥 КРАСИВО) -->
+                                        <div class="worker-services">
+                                            {% for svc in worker.service %}
+                                                <span class="worker-service-chip">
+                                {{ svc.title }}
+                            </span>
+                                            {% else %}
+                                                <span class="worker-service-empty">
+                                Услуги не указаны
+                            </span>
+                                            {% endfor %}
+                                        </div>
+
+                                        <!-- META -->
+
+
+                                        <!-- ACTION -->
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-12">
+                                <div class="worker-empty">
+                                    Пока нет доступных мастеров
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .worker-phone {
+            color: #0ea5e9;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .worker-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .worker-service-chip {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: #334155;
+            font-size: 13px;
+            font-weight: 500;
+            transition: .2s;
+            cursor: default;
+        }
+
+        .worker-service-chip:hover {
+            background: #0ea5e9;
+            color: #fff;
+        }
+
+        .worker-service-empty {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+    </style>
+    {% include "includes/footer.html.twig" %}
+</div>
+
+{% include "includes/additional.html.twig" %}
+{% include "includes/js.html.twig" %}
+
+</body>
+</html>

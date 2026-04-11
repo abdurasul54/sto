@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- language -->
+<html lang="zxx">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="layerdrops">
+  
+    <!-- ======== Page title ============ -->
+    <title>ДЕТАЛИ УСЛУГИ || СТО ТЕМУР</title>
+
+    {% include 'includes/links.html.twig' %}
+
+</head>
+
+<body class="custom-cursor">
+
+    <!-- Preloader Start-->
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(/assets/images/loader.png);"></div>
+    </div>
+    <!-- Preloader End-->
+
+    <div class="page-wrapper">
+
+        {% include 'includes/header.html.twig' %}
+                
+        <!-- Header End-->
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url(/assets/images/backgrounds/1bg.jpg);background-position: 0 50%"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2 class="page-header__title">{{ service.title }}</h2>
+                <ul class="drivschol-breadcrumb list-unstyled">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><span>услуги</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+        <section class="service-details">
+            <div class="container">
+                <div class="row gutter-y-30">
+                    <div class="col-md-12 col-lg-4">
+                        <div class="service-sidebar">
+                            <div class="service-sidebar__single  wow fadeInUp" data-wow-delay='500ms'>
+                                <div class="service-sidebar__contact">
+                                    <h3 class="service-sidebar__contact-title">Записаться на приём</h3><!-- /.service-sidebar__contact__title -->
+                                    <div class="service-sidebar__contact-btn">
+                                        <a href="/contacts" class="drivschol-btn drivschol-btn--base2">Записаться</a>
+                                    </div><!-- /.service-sidebar__contact__icon -->
+                                    <div class="service-sidebar__contact-image">
+                                        <img src="http://127.0.0.1:8000/img/services/{{ service.previmg }}" alt="{{ service.title }}" style="width:247px !important;height: 332px !important;object-fit:cover">
+                                    </div>
+                                    <div class="service-sidebar__contact-angle">
+                                        <svg width="370" height="210" viewBox="0 0 370 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M259.647 0L0 210H370L259.647 0Z" fill="#EC2526" />
+                                        </svg>
+                                    </div>
+                                </div><!-- /.service-sidebar__contact -->
+                            </div>
+                        </div><!-- /.sidebar -->
+                    </div><!-- /.col-md-12 col-lg-4 -->
+                    <div class="col-md-12 col-lg-8">
+                        <div class="service-details__content">
+                            <div class="service-details__single">
+                                <div class="service-details__thumbnail wow fadeInUp" data-wow-delay='300ms'>
+                                    <img src="http://127.0.0.1:8000/img/services/{{ service.descimg }}" alt="{{ service.title }}">
+                                </div><!-- /.service-details__thumbnail -->
+
+                                <h3 class="service-details__title wow fadeInUp" data-wow-delay='300ms'>{{ service.title }}</h3><!-- /.service-details__title -->
+
+                                <p class="service-details__text wow fadeInUp" data-wow-delay='350ms'>{{ service.description }}</p><!-- /.service-details__text -->
+                            </div><!-- /.service-details__single-->
+
+                            <div class="service-details__single">
+                                <h3 class="service-details__title wow fadeInUp" data-wow-delay='300ms'>Почему мы?</h3><!-- /.service-details__title -->
+                                <div class="service-details__single-inner">
+                                    <div class="service-details__inner-item wow fadeInUp" data-wow-delay='300ms'>
+                                        <div class="item-icon">
+                                            <div class="icon">
+                                                <i class="icon-success"></i>
+                                            </div>
+                                        </div>
+                                        <div class="item-content">
+                                            <h4 class="item__title">99% Доволных клиентов</h4>
+                                        </div>
+                                    </div>
+                                    <div class="service-details__inner-item wow fadeInUp" data-wow-delay='300ms'>
+                                        <div class="item-icon">
+                                            <div class="icon">
+                                                <i class="icon-driving-license"></i>
+                                            </div>
+                                        </div>
+                                        <div class="item-content">
+                                            <h4 class="item__title">Квалифицированный персонал</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.service-details__single-->
+
+                        </div><!-- /.service-details__content -->
+                    </div><!-- /.col-md-12 col-lg-8 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.service-details -->
+
+        {% include 'includes/footer.html.twig' %}
+
+
+    </div><!-- /.page-wrapper -->
+
+    {% include 'includes/additional.html.twig' %}
+
+
+	   {% include "includes/js.html.twig" %}
+
+</body>
+
+</html>

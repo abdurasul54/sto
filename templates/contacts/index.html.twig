@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!-- language -->
+<html lang="zxx">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="layerdrops">
+   
+    <!-- ======== Page title ============ -->
+    <title>КОНТАКТЫ || СТО ТЕМУР</title>
+
+      {% include 'includes/links.html.twig' %}
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYjgFLle_GdUNA0n-DZPjov1S3jIsX0Nc&libraries=maps,marker&v=beta&signature=uPahqzohxRn7aic14mT38Sm3-V0="
+        defer
+    ></script>
+</head>
+<body class="custom-cursor">
+
+  
+
+    <!-- Preloader Start-->
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(/assets/images/loader.png);"></div>
+    </div>
+    <!-- Preloader End-->
+
+    <div class="page-wrapper">
+
+       {% include 'includes/header.html.twig' %}
+
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url(/assets/images/backgrounds/3.jpg);background-position: 0 60%;"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2 class="page-header__title">Контакты</h2>
+                <ul class="drivschol-breadcrumb list-unstyled">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><span>Контакты</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+        <section class="contact-one">
+            <div class="container">
+                <div class="contact-one__inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sec-title text-center wow fadeInUp" data-wow-delay="300ms">
+                                <h6 class="sec-title__tagline">
+                                    <i class="icon-left-arrow sec-title__img"></i>
+                                    Связаться с нами
+                                    <i class="icon-right-arrow sec-title__img"></i>
+                                </h6>
+                                <h3 class="sec-title__title">
+                                    Чтобы связаться с нами заполните форму
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form
+                            action="{{ path('app_repair_add') }}"
+                            method="POST"
+                            class="contact-one__form contact-form-validated form-one"
+                    >
+                        <div class="form-one__group wow fadeInUp" data-wow-delay="300ms">
+                            <div class="contact-one__form__control">
+                                <input type="text" name="name" placeholder="Ваше имя" required>
+                            </div>
+
+                            <div class="contact-one__form__control">
+                                <input type="email" name="Email" placeholder="Ваш E-mail" required>
+                            </div>
+
+                            <div class="contact-one__form__control">
+                                <input type="text" name="phone" placeholder="Номер телефона" required>
+                            </div>
+
+                            <div class="contact-one__form__control">
+                                <select
+                                        name="tasks_id"
+                                        id="tasks_id"
+                                        required
+                                        style="width: 100%; border: none; padding: 10px 10px 10px 25px; height: 100%; outline: none;"
+                                >
+                                    <option value="" disabled selected>Выберите задачу</option>
+                                    {% for task in tasks %}
+                                        <option value="{{ task.id }}">{{ task.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="contact-one__form__control form-one__control__full">
+                                <textarea name="message" placeholder="Ваше сообщение" required></textarea>
+                            </div>
+
+                            <div class="contact-one__form__control form-one__control__full text-center">
+                                <button type="submit" class="drivschol-btn drivschol-btn--base2 submit-btn">
+                                    <span>Отправить сообщение</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="success-modal">
+            <div class="success-modal__backdrop"></div>
+
+            <div class="success-modal__dialog">
+                <div class="success-modal__icon-wrap">
+                    <div class="success-modal__icon-ring"></div>
+
+                    <svg class="success-modal__icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="32" fill="url(#successGradient)"/>
+                        <path d="M20 33.5L28 41.5L45 24.5" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="successGradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#34D399"/>
+                                <stop offset="1" stop-color="#059669"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <h3 class="success-modal__title">Сообщение отправлено</h3>
+                <p class="success-modal__text">
+                    Спасибо! Мы получили вашу заявку и скоро свяжемся с вами.
+                </p>
+            </div>
+        </div>
+
+        <style>
+            .success-modal {
+                position: fixed;
+                inset: 0;
+                z-index: 99999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity .35s ease, visibility .35s ease;
+            }
+
+            .success-modal.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .success-modal__backdrop {
+                position: absolute;
+                inset: 0;
+                background: rgba(9, 14, 24, 0.55);
+                backdrop-filter: blur(7px);
+                -webkit-backdrop-filter: blur(7px);
+            }
+
+            .success-modal__dialog {
+                position: relative;
+                width: 100%;
+                max-width: 420px;
+                padding: 34px 28px 30px;
+                border-radius: 24px;
+                background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+                box-shadow:
+                        0 20px 60px rgba(0, 0, 0, 0.18),
+                        0 8px 24px rgba(16, 24, 40, 0.08);
+                text-align: center;
+                transform: translateY(20px) scale(.92);
+                transition: transform .35s ease;
+                overflow: hidden;
+            }
+
+            .success-modal__dialog::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 140px;
+                height: 140px;
+                transform: translateX(-50%) translateY(-60%);
+                background: radial-gradient(circle, rgba(52, 211, 153, .18) 0%, rgba(52, 211, 153, 0) 72%);
+                pointer-events: none;
+            }
+
+            .success-modal.active .success-modal__dialog {
+                transform: translateY(0) scale(1);
+            }
+
+            .success-modal__icon-wrap {
+                position: relative;
+                width: 96px;
+                height: 96px;
+                margin: 0 auto 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .success-modal__icon-ring {
+                position: absolute;
+                width: 96px;
+                height: 96px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(52, 211, 153, 0.22) 0%, rgba(52, 211, 153, 0.06) 55%, rgba(52, 211, 153, 0) 72%);
+                animation: pulseRing 1.8s ease-out infinite;
+            }
+
+            .success-modal__icon {
+                position: relative;
+                width: 72px;
+                height: 72px;
+                filter: drop-shadow(0 10px 20px rgba(5, 150, 105, 0.25));
+                animation: popIn .45s ease;
+            }
+
+            .success-modal__title {
+                margin: 0 0 10px;
+                color: #101828;
+                font-size: 28px;
+                font-weight: 800;
+                line-height: 1.2;
+            }
+
+            .success-modal__text {
+                margin: 0;
+                color: #667085;
+                font-size: 16px;
+                line-height: 1.65;
+            }
+
+            .submit-btn {
+                position: relative;
+                transition: transform .2s ease, opacity .2s ease;
+            }
+
+            .submit-btn.loading {
+                pointer-events: none;
+                opacity: .85;
+            }
+
+            .submit-btn.loading span {
+                opacity: 0;
+            }
+
+            .submit-btn.loading::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 22px;
+                height: 22px;
+                margin: -11px 0 0 -11px;
+                border: 2px solid rgba(255,255,255,.35);
+                border-top-color: #fff;
+                border-radius: 50%;
+                animation: spin .7s linear infinite;
+            }
+
+            @keyframes popIn {
+                0% {
+                    transform: scale(.65);
+                    opacity: 0;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes pulseRing {
+                0% {
+                    transform: scale(.88);
+                    opacity: .9;
+                }
+                70% {
+                    transform: scale(1.15);
+                    opacity: 0;
+                }
+                100% {
+                    transform: scale(1.15);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @media (max-width: 576px) {
+                .success-modal__dialog {
+                    padding: 28px 20px 24px;
+                    border-radius: 20px;
+                }
+
+                .success-modal__title {
+                    font-size: 23px;
+                }
+
+                .success-modal__text {
+                    font-size: 15px;
+                }
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.querySelector('.contact-one__form');
+                const modal = document.getElementById('successModal');
+                const submitButton = form.querySelector('.submit-btn');
+
+                if (!form || !modal || !submitButton) return;
+
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    if (submitButton.classList.contains('loading')) return;
+
+                    submitButton.classList.add('loading');
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method || 'POST',
+                            body: new FormData(form),
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Ошибка отправки формы');
+                        }
+
+                        form.reset();
+                        showSuccessModal();
+                    } catch (error) {
+                        alert('Не удалось отправить сообщение. Попробуйте ещё раз.');
+                    } finally {
+                        submitButton.classList.remove('loading');
+                    }
+                });
+
+                function showSuccessModal() {
+                    modal.classList.add('active');
+
+                    clearTimeout(modal.autoCloseTimer);
+                    modal.autoCloseTimer = setTimeout(() => {
+                        modal.classList.remove('active');
+                    }, 2500);
+                }
+            });
+        </script>
+
+        <section class="contact-location">
+            <div class="container">
+                <div class="contact-location__header">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="sec-title  text-start wow fadeInUp" data-wow-delay='300ms'>
+
+                                <h6 class="sec-title__tagline">
+                                    <i class="icon-left-arrow sec-title__img"></i>
+                                    Локация
+                                    <i class="icon-right-arrow sec-title__img"></i>
+                                </h6><!-- /.sec-title__tagline -->
+
+                                <h3 class="sec-title__title">Наши филиалы</h3><!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                        </div><!-- /.col-12 -->
+                        <div class="col-md-6">
+                            <div class="contact-location__subheading wow fadeInUp" data-wow-delay='300ms'>
+                                <p class="contact-location__subheading__text">Наша цель – обеспечить каждому клиенту высокое качество обслуживания и товаров, поддерживая автомобили в отличном состоянии и безопасности на дороге.</p><!-- /.contact-location__subheading__text -->
+                            </div><!-- / -->
+                        </div><!-- /.col-12 -->
+                    </div><!-- /.row -->
+                </div><!-- /.contact-location__header -->
+
+                <div class="contact-location__inner tabs-box wow fadeInUp" data-wow-delay='300ms'>
+                    <div class="contact-location__inner__filter">
+                        {% for item in branch %}
+                            <button data-tab="#tab{{ item.id }}" 
+                                    class="contact-location__inner__filter__btn drivschol-btn tab-btn{% if loop.first %} active-btn{% endif %}">
+                                {{ item.title }}
+                            </button>
+                        {% endfor %}
+                    </div><!-- /.contact-location__inner__filter -->
+
+                    <div class="tabs-content">
+                        {% for item in branch %}
+                            <div class="contact-location__inner__item fadeInUp animated tab{% if loop.first %} active-tab{% endif %}" id="tab{{ item.id }}">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="contact-location__inner__item__image">
+                                            <img src="http://127.0.0.1:8000//img/branch/{{ item.img }}" class="image-fluid" alt="{{ item.title }}">
+                                        </div><!-- /.contact-location__inner__item__image -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-6">
+                                        <div class="contact-location__inner__item__content">
+                                            <div class="contact-location__inner__item__content__info">
+                                                <a href="tel:{{ item.phoneNumber }}" class="contact-location__inner__item__content__info__btn d-flex align-items-center">
+                                                    <div class="contact-location__inner__item__content__info__icon">
+                                                        <i class="icon-Call"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <span class="contact-location__inner__item__content__info__text">Номер телефона</span>
+                                                        <h6 class="contact-location__inner__item__content__info__call">{{ item.phoneNumber }}</h6>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="contact-location__inner__item__content__info">
+                                                <a href="mailto:{{ item.email }}" class="contact-location__inner__item__content__info__btn d-flex align-items-center">
+                                                    <div class="contact-location__inner__item__content__info__icon">
+                                                        <i class="icon-envelope"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <span class="contact-location__inner__item__content__info__text">Email</span>
+                                                        <h6 class="contact-location__inner__item__content__info__call">{{ item.email }}</h6>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="contact-location__inner__item__content__info">
+                                                <a href="https://www.google.com/maps?q={{ item.address }}" class="contact-location__inner__item__content__info__btn d-flex align-items-center">
+                                                    <div class="contact-location__inner__item__content__info__icon">
+                                                        <i class="icon-map-pin"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <span class="contact-location__inner__item__content__info__text">Ориентир</span>
+                                                        <h6 class="contact-location__inner__item__content__info__call">{{ item.address }}</h6>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="contact-location__inner__item__content__right">
+                                                <div class="contact-location__inner__item__content__right__item">
+                                                    <span class="contact-location__inner__item__content__right__item__day">Время работы</span>
+                                                    <p class="contact-location__inner__item__content__right__item__time">с 09:00 до 18:00 </p>
+                                                </div><!-- /.contact-location__inner__item__content__right__item -->
+                                            </div><!-- /.contact-location__inner__item__content__right -->
+                                        </div><!-- /.contact-location__inner__item__content -->
+                                    </div><!-- /.col-md-6 -->
+                                </div><!-- /.row -->
+                            </div><!-- /.contact-location__inner__item -->
+                        {% endfor %}
+                    </div><!-- /.tabs-content -->
+                </div><!-- /.contact-location__inner -->
+
+            </div><!-- /.container -->
+        </section><!-- /.contact-location -->
+
+        <div class="contact-map wow fadeInUp" data-wow-delay='300ms'>
+            <div class="container-fluid">
+                <div class="google-map google-map__contact">
+                    <gmp-map
+                        center="40.31176983282296,69.63140779931804"
+                        zoom="14"
+                        map-id="d051f50ce22bc736"
+                        style="height: 400px"
+                        >
+                        {% for item in branch %}
+                            <gmp-advanced-marker
+                                position="{{ item.latitude }},{{ item.longitude }}"
+                                title="{{ item.title }}"
+                            ></gmp-advanced-marker>
+                        {% endfor %}
+                        </gmp-map>
+                </div>
+                <!-- /.google-map -->
+            </div><!-- /.container-fluid -->
+        </div><!-- /.contact-map -->
+
+
+        {% include "includes/footer.html.twig" %}
+        
+
+    </div><!-- /.page-wrapper -->
+
+    {% include "includes/additional.html.twig" %}
+
+    {% include "includes/js.html.twig" %}
+
+
+</body>
+</html>

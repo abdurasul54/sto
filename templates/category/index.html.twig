@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- language -->
+<html lang="zxx">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="layerdrops">
+    
+    <!-- ======== Page title ============ -->
+    <title>УСЛУГИ || СТО ТЕМУР</title>
+
+    {% include 'includes/links.html.twig' %}
+
+</head>
+ <style>
+    .service-card {
+        border: 1px solid transparent;
+    }
+    .hoverCard:hover .service-card{
+        border-color: var(--drivschol-primary);
+    }
+    .hoverCard:hover .hoverCard h4{
+        color: var(--drivschol-primary) !important;
+        background-size: 100% 1px !important;
+    }
+    .service-card__title{
+        font-size: 20px !important;
+        font-style: normal;
+        font-weight: 800;
+        margin-top: -4px;
+        margin-bottom: 14px;
+        line-height: normal;
+    }
+</style>
+<body class="custom-cursor">
+
+  
+
+    <!-- Preloader Start-->
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(/assets/images/loader.png);"></div>
+    </div>
+    <!-- Preloader End-->
+
+    <div class="page-wrapper">
+
+        {% include 'includes/header.html.twig' %}
+
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url(/assets/images/backgrounds/3.jpg);background-position: 0 60%;"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2 class="page-header__title">Каталог</h2>
+                <ul class="drivschol-breadcrumb list-unstyled">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><span>Категории продуктов</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+         <section class="service-one service-one__home" id="services">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="sec-title  text-center wow fadeInUp" data-wow-duration='300ms'>
+
+                                <h6 class="sec-title__tagline"> 
+                                    <i class="icon-left-arrow sec-title__img"></i>
+                                    Каталог
+                                    <i class="icon-right-arrow sec-title__img"></i>
+                                </h6><!-- /.sec-title__tagline -->
+
+                            </div><!-- /.sec-title -->
+                            <!-- section-title -->
+                        </div>
+                    </div>
+                    <div class="row gutter-y-30">
+                        {# <div class="col-md-6 col-lg-4">
+                            <div class="service-card service-card-one  wow fadeInUp animated" data-wow-duration='1500ms' data-wow-delay='000ms'>
+
+                                <div class="service-card__image">
+                                    <img src="public/assets/images/service/1.webp" alt="Instructor Training">
+                                </div><!-- /.blog-card__image -->
+
+                                <div class="service-card__content">
+                                    <h3 class="service-card__title"><a href="{{ path('service', { id: 123 }) }}">Замена масла</a></h3>
+                                    <p class="service-card__text">Замена масла и масляного фильтра - это одна из наиболее важных процедур по уходу за вашим автомобилем</p><!-- /.blog-card-two__text -->
+                                </div><!-- /.blog-card__content -->
+
+                                <div class="service-card__bth">
+                                    <a href="{{ path('service', { id: 123 }) }}" class="drivschol-btn drivschol-btn--base2">Подробнее <i class="fas fa-plus"></i></a>
+                                </div>
+
+                            </div><!-- /.blog-card -->
+                        </div><!-- /.col-md-6 col-lg-4 --> #}
+                        {# <div class="col-md-6 col-lg-4">
+                            <div class="service-card service-card-one  wow fadeInUp animated" data-wow-duration='1500ms' data-wow-delay='200ms'>
+
+                                <div class="service-card__image">
+                                    <img src="public/assets/images/service/2.webp" alt="Road Safety Guide">
+                                </div><!-- /.blog-card__image -->
+
+                                <div class="service-card__content">
+                                    <h3 class="service-card__title"><a href="{{ path('service', { id: 123 }) }}">Диагностика</a></h3>
+                                    <p class="service-card__text">Компьютерная диагностика автомобиля - это современный метод выявления проблем с электроникой и системами вашего автомобиля.</p><!-- /.blog-card-two__text -->
+                                </div><!-- /.blog-card__content -->
+
+                                <div class="service-card__bth">
+                                    <a href="{{ path('service', { id: 123 }) }}" class="drivschol-btn drivschol-btn--base2">Подробнее <i class="fas fa-plus"></i></a>
+                                </div>
+
+                            </div><!-- /.blog-card -->
+                        </div><!-- /.col-md-6 col-lg-4 --> #}
+                    {% for service in category %}
+                        <div class="col-md-6 col-lg-3 hoverCard">
+                            <div class="service-card service-card-one  wow fadeInUp animated" data-wow-duration='1500ms' data-wow-delay='000ms'>
+                                <div class="service d-flex align-items-center px-3 py-3">
+                                    <img src="{{ asset('img/category/') }}{{ service.img }}" width="60px" height="60px" class="object-fit-cover me-3" style="border-radius: 50%;" alt="{{ service.name }}">
+                                    <h4 class="service-card__title m-0 w-100"><a href="category{{ service.id }}">{{ service.name }}</a></h4>
+                                </div><!-- /.blog-card__content -->
+                            </div><!-- /.blog-card -->
+                        </div>
+                    {% endfor %}<!-- /.col-md-6 col-lg-4 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </section>
+
+       
+       
+	        {% include 'includes/footer.html.twig' %}
+
+    </div><!-- /.page-wrapper -->
+
+
+    {% include "includes/additional.html.twig"  %}
+
+    {% include "includes/js.html.twig" %}
+
+</body>
+
+</html>

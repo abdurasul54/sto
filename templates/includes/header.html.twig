@@ -1,0 +1,201 @@
+{# templates/partials/_header.html.twig #}
+<style>
+    .hidden-smore {
+        display: none;
+    }
+
+    @media screen and (max-width: 500px) {
+        .hidden-xs {
+            display: none;
+        }
+
+        .hidden-smore {
+            display: block;
+            width: 80%;
+        }
+    }
+</style>
+<!-- Topbar Start-->
+<div class="topbar-one">
+    <div class="container-fluid">
+        <div class="topbar-one__inner">
+            <div class="topbar-one__left">
+                <div class="topbar-one__social">
+                    <!-- social link-->
+                    <a href="{{ settings[0].facebook }}"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="{{ settings[0].youtube }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-youtube" viewBox="0 0 20 20">
+                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                        </svg>
+                    </a>
+                    <a href="{{ settings[0].instagram }}"><i class="icon-Instagram" aria-hidden="true"></i></a>
+                </div>
+                <p class="topbar-one__text  text-black">С понедельника по субботу с 8:00 до 18:00</p>
+            </div>
+            <ul class="topbar-one__right">
+                <li class="topbar-one__right-text  text-black"><i class="icon-map-pin" aria-hidden="true"></i><a
+                            target="_blank"
+                            href="https://www.google.ru/maps/place/%D0%A1%D0%A2%D0%9E+%22%D0%A2%D0%B5%D0%BC%D1%83%D1%80%22/@40.3094867,69.6389325,16z/data=!4m10!1m2!2m1!1z0YHRgtC-INGC0LXQvNGD0YA!3m6!1s0x38b1b340fed78bc9:0xa3c4596453456cf0!8m2!3d40.3094867!4d69.6484597!15sChHRgdGC0L4g0YLQtdC80YPRgJIBEm9pbF9jaGFuZ2Vfc2VydmljZeABAA!16s%2Fg%2F11gbfpfd_k?hl=ru&entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D">735700,
+                        г. Худжанд, Согдийская область, Таджикистан </a></li>
+                <li class="topbar-one__right-text  text-black"><i class="icon-envelope" aria-hidden="true"></i><a
+                            href="mailto:inomjonnosirov@gmail.com"> {{ settings[0].email }}</a></li>
+        </div>
+    </div>
+</div>
+<!-- Header Start-->
+<header class="main-header sticky-header sticky-header--normal bg-black">
+    <div class="container-fluid">
+        <div class="main-header__inner">
+            <div class="main-header__logo">
+                <a href="/">
+                    <img src="assets/images/logo-temur-llc.png" style="max-width:200px !important;" alt="Drivschol HTML"
+                         class="hidden-xs">
+                    <img src="assets/images/logo-temur-llc.png" alt="Drivschol HTML" class="hidden-smore">
+                </a>
+            </div><!-- /.main-header__logo -->
+            <nav class="main-header__nav main-menu">
+                <ul class="main-menu__list">
+                    <li>
+                        <a href="/">Главная</a>
+                    </li>
+                    <li><a href="{{ path('category') }}">Магазин</a></li>
+                 <!--   <li><a href="{{ path('app_opt_product') }}">Оптовая часть</a></li>-->
+                    <li><a href="{{ path('services') }}">Наши услуги</a></li>
+                    <li><a href="{{ path('workers') }}">Мастера</a></li>
+
+
+                    <!--  <li class="dropdown"><a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li><a href="team.html">Instructor</a>
+                            <li><a href="team-carousel.html">Instructor Carousel</a></li>
+                            <li><a href="team-details.html">Instructor Details</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="pricing-carousel.html">Pricing Carousel</a></li>
+                            <li><a href="gallery.html">Gallery</a> </li>
+                            <li><a href="gallery-grid.html">Gallery Grid</a></li>
+                            <li><a href="gallery-filter.html">Gallery filter</a></li>
+                            <li><a href="gallery-carousel.html">Gallery Carousel</a></li>
+                            <li><a href="faq.html">FAQs</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="404.html">404 Error</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Courses</a>
+                        <ul>
+                            <li><a href="course.html">Courses</a></li>
+                            <li><a href="course-carousel.html">Courses Carousel</a></li>
+                            <li><a href="course-details.html">Courses Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Services</a>
+                        <ul>
+                            <li><a href="services-grid.html">Services</a></li>
+                            <li><a href="services-carousel.html">Services Carousel</a></li>
+                            <li><a href="service-d-safety.html">Safety Instruction</a></li>
+                            <li><a href="service-d-driving.html">Road Safety Guide</a></li>
+                            <li><a href="service-d-guideline.html">Road Guidelines</a></li>
+                            <li><a href="service-d-insurance.html">Driver Insurance</a></li>
+                            <li><a href="service-d-motorcycle.html">Motorcycle Training</a></li>
+                            <li><a href="service-d-road.html">Driving License</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Blog</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown"> <a href="#">Blog grid</a>
+                                <ul class="sub-menu">
+                                    <li><a href="blog-grid.html">No sidebar</a></li>
+                                    <li><a href="blog-grid-left.html">Left sidebar</a></li>
+                                    <li><a href="blog-grid-right.html">Right sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog-carousel.html">Blog carousel</a></li>
+                            <li class="dropdown"> <a href="#">Blog list</a>
+                                <ul class="sub-menu">
+                                    <li><a href="blog-list.html">No sidebar</a></li>
+                                    <li><a href="blog-list-left.html">Left sidebar</a></li>
+                                    <li><a href="blog-list-right.html">Right sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"> <a href="#">Blog details</a>
+                                <ul class="sub-menu">
+                                    <li><a href="blog-details.html">No sidebar</a></li>
+                                    <li><a href="blog-details-left.html">Left sidebar</a></li>
+                                    <li><a href="blog-details-right.html">Right sidebar</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    -->
+
+                    <li> <a href="{{ path('about') }}">О нас</a> </li>
+ 
+                    <li>
+                        <a href="{{ path('contacts') }}">Записаться на прием</a>
+                    </li>
+                </ul>
+            </nav>
+                    <div class="main-header__right">
+                        <div class="info-item">
+                            <a href="tel: {{ settings[1] }}" class="info-item__btn d-flex align-items-center">
+                                <div class="icon">
+                                    <i class="icon-Call"></i>
+                                </div>
+                                <div class="content">
+                                    <span class="content__text">Номер телефона</span>
+                                    <h6 class="content__call">{{ settings[0].phoneNumber }}</h6>
+
+
+                                </div>
+                            </a>
+                        </div>
+                        <div class="info-item">
+                            <a href="{{ path('favorites') }}" class="info-item__btn"><i
+                                        class="fa fa-heart text-primary"></i></a>
+                        </div>
+                        <div class="item-shape">
+                            <img src="assets/images/shapes/shape.svg" alt="Drivschol">
+                        </div>
+                    </div><!-- /.main-header__right -->
+                    <div class="mobile-nav__btn mobile-nav__toggler">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div><!-- /.mobile-nav__toggler -->
+        </div><!-- /.main-header__inner -->
+    </div><!-- /.container-fluid -->
+</header><!-- /.main-header -->
+<!-- Header End-->
+
+<script type="text/javascript">
+    function toggleForm() {
+        let loader = document.querySelector('.loader');
+        let registerElements = document.querySelectorAll('#register');
+        let content = document.querySelector('.mover');
+
+        // Show loader and animate it
+        loader.style.display = "block";
+        loader.style.transform = "translate(390%, 100%)";
+        content.style.paddingTop = "100px";
+
+        // Toggle visibility of register elements
+        registerElements.forEach((item) => {
+            if (item.style.display === "none") {
+                item.style.display = "block";
+                document.querySelector('#enter').style.display = "none";
+                console.log('block');
+            } else {
+                item.style.display = "none";
+                document.querySelector('#enter').style.display = "block";
+                console.log('none');
+            }
+        });
+
+        // Reset styles after a delay
+        setTimeout(() => {
+            content.style.paddingTop = "0px";
+            loader.style.display = "none";
+        }, 1000);
+    }
+</script>

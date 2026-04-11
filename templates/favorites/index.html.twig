@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!-- language -->
+<html lang="zxx">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="layerdrops">
+   
+    <!-- ======== Page title ============ -->
+     <title>ИЗБРАННОЕ || СТО ТЕМУР</title>
+
+    {% include "includes/links.html.twig" %}
+
+</head>
+
+<body class="custom-cursor">
+
+    <!-- Preloader Start-->
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(public/assets/images/loader.png);"></div>
+    </div>
+    <!-- Preloader End-->
+
+    <div class="page-wrapper">
+
+        {% include 'includes/header.html.twig' %}
+
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url(public/assets/images/backgrounds/3.jpg);background-position: 0 50%"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2 class="page-header__title">Избранное</h2>
+                <ul class="drivschol-breadcrumb list-unstyled">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><span>Избранное</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+
+        <!-- Cart Start -->
+        <section class="cart-page">
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table cart-page__table">
+                        <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Цена</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                          
+                            {# <tr>
+                                <td>
+                                    <div class="cart-page__table__meta">
+                                        <div class="cart-page__table__meta-img"> <img src="public/assets/images/products/2.webp" alt="drivschol"> </div>
+                                        <h3 class="cart-page__table__meta-title"><a href="product-details.html">Round Chair</a> </h3>
+                                    </div>
+                                </td>
+                                <td>$10.99</td>
+                                <td><a href="" class="table cart-page__table__remove"><i class="fas fa-times"></i></a></td>
+                            </tr> #}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!-- Cart End -->
+
+        {% include "includes/footer.html.twig" %}
+
+    </div><!-- /.page-wrapper -->
+
+
+
+    {% include "includes/additional.html.twig" %}
+
+    {% include "includes/js.html.twig" %}
+
+
+    <script>
+    showItems();
+
+    function showItems() {
+        let body = document.querySelector('#tbody'); 
+        let favs = localStorage.getItem('favorite'); 
+
+        if (favs) {
+            try {
+                favs = JSON.parse(favs); 
+
+                if (Array.isArray(favs) && favs.length > 0) {
+                    body.innerHTML = "";
+                    favs.forEach((val) => {
+                        body.innerHTML += `
+                            <tr>
+                                <td>
+                                    <div class="cart-page__table__meta">
+                                        <div class="cart-page__table__meta-img">
+                                            <img src="http://127.0.0.1:8000/public/${val.img}" alt="drivschol">
+                                        </div>
+                                        <h3 class="cart-page__table__meta-title">
+                                            <a href="#">${val.name}</a>
+                                        </h3>
+                                    </div>
+                                </td>
+                                <td>${val.price} TJS</td>
+                                <td>
+                                    <a href="#" onclick="removeFromFavorite(${val.id})" class="table cart-page__table__remove">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    body.innerHTML = `<tr><td colspan="3" class="text-center">Ваш список избранного пуст.</td></tr>`;
+                }
+            } catch (error) {
+                console.error("Invalid JSON in localStorage:", error);
+                body.innerHTML = `<tr><td colspan="3">Ошибка загрузки данных.</td></tr>`;
+            }
+        } else {
+            body.innerHTML = `<tr><td colspan="3" class="text-center">Ваш список избранного пуст.</td></tr>`;
+        }
+    }
+
+    
+    function removeFromFavorite(id) {
+        let favs = JSON.parse(localStorage.getItem('favorite')) || [];
+
+        favs = favs.filter(item => item.id !== id);
+
+        localStorage.setItem('favorite', JSON.stringify(favs));
+        alert('Удалено из избранного');
+
+        showItems();
+    }
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!-- language -->
+<html lang="zxx">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="layerdrops">
+  
+    <!-- ======== Page title ============ -->
+     <title>МАГАЗИН || СТО ТЕМУР</title>
+    
+    {% include 'includes/links.html.twig' %}
+
+</head>
+
+<style>
+.product__item__content{
+    padding-bottom: 20px;
+}
+.product__item__top__img{
+    max-width: 100%;
+}
+.product__item__top__img>img{
+    aspect-ratio: 1/1;
+    object-fit:cover;
+}
+.img-responsible{
+  width: 100% !important;
+  aspect-ratio: 1/1 !important;
+  object-fit: cover;
+}
+</style>
+
+<body class="custom-cursor">
+
+    <!-- Preloader Start-->
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(/images/loader.png);"></div>
+    </div>
+    <!-- Preloader End-->
+
+    <div class="page-wrapper">
+
+        {% include 'includes/header.html.twig' %}
+        
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url(/assets//images/backgrounds/1bg.jpg);background-position: 0 70%;"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2 class="page-header__title">Магазин</h2>
+                <ul class="drivschol-breadcrumb list-unstyled">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><span>Продукты</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+        <section class="product-one product-one--page">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="product__info-top">
+                            <div class="product__showing-text-box">
+                                <p class="product__showing-text">Каталог товаров</p>
+                            </div>
+                            <div class="product__showing-text-box">
+                                <label class="d-flex align-items-center">
+                                    <span class="me-3">Поиск</span>    
+                                    <input type="text" class="form-control" oninput="filterProducts(this.value)">
+                                </label>
+                            </div>
+                            {# <div class="product__showing-sort">
+                                <select class="selectpicker" aria-label="Sort by popular">
+                                    <option selected>Sort by popular</option>
+                                    <option value="1">Sort by view</option>
+                                    <option value="2">Sort by price</option>
+                                    <option value="3">Sort by ratings</option>
+                                </select>
+                            </div> #}
+                        </div>
+
+                        <div class="row gutter-y-30" id="products">
+                            {% for p in product %}
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="product__item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
+                                        <div class="product__item__top">
+                                            <div class="product__item__top__img">
+                                                <img src="http://127.0.0.1:8000/img/shop/{{ p.img }}" class="img-responsive" alt="{{ p.name }}">
+                                            </div><!-- /.product-image -->
+                        
+                                            <div class="product__item__top__btn">
+                                                {# <a href="#" onclick="addToFavorite({{ p.id }},'{{ p.name|e('js') }}','{{ p.price }}','img/shop/{{ p.img }}')"><i class="far fa-heart"></i></a> #}
+                                                <!-- <a href="product-details.html"><i class="fas fa-eye"></i></a> -->
+                                            </div><!-- /.product__item__top__btn -->
+                                        </div><!-- /.product__item__top -->
+                        
+                                        <div class="product__item__content">
+                                            <h4 class="product__item__title"><a href="product-details.html">{{ p.name }}</a></h4><!-- /.product-title -->
+                                            <div class="product__item__price">
+                                                {{ p.price }} TJS
+                                                {% if p.discount is not null and p.discount >= 1 %}
+                                                    <del class="product__item__price__del">{{ p.discount }} TJS</del>
+                                                {% endif %}
+                        
+                                            </div><!-- /.product-price -->
+                                            <a href="#"  onclick="addToFavorite({{ p.id }},'{{ p.name|e('js') }}','{{ p.price }}','img/shop/{{ p.img }}')" class="drivschol-btn drivschol-btn--base"><span>В избранное</span></a>
+                                        </div><!-- /.product__item__content -->
+                                    </div><!-- /.product-item -->
+                                </div><!-- /.col-md-6 col-lg-3 -->
+                            {% endfor %}
+                        </div>
+                        <!-- /.row -->
+<!-- /.container -->
+        </section><!-- /.product-one product-one--page -->
+
+        {% include "includes/footer.html.twig" %}
+
+    </div><!-- /.page-wrapper -->
+
+
+    {% include "includes/additional.html.twig" %}
+
+    {% include "includes/js.html.twig" %}
+    <script type="text/javascript">
+        let products = JSON.parse('{{ productJson|raw }}');
+        let originalProducts = [...products];
+
+
+        function addToFavorite(id, name, price, img) {
+            let favorite = JSON.parse(localStorage.getItem('favorite')) || [];
+
+            favorite.push({
+                'id': id,
+                'name': name,
+                'price': price,
+                'img': img
+            });
+
+            localStorage.setItem('favorite', JSON.stringify(favorite));
+
+             console.log(JSON.parse(localStorage.getItem('favorite')));
+        }
+
+        function filterProducts(inp) {
+            let searchTerm = inp.toLowerCase().trim();
+
+            let filtered = searchTerm ? products.filter(p => p.name.toLowerCase().includes(searchTerm)) : originalProducts;
+            console.log(filtered)
+            let output = filtered.map(p => `
+                <div class="col-md-6 col-lg-3">
+                    <div class="product__item">
+                        <div class="product__item__top">
+                            <div class="product__item__top__img">
+                                <img src="http://127.0.0.1:8000/public/img/shop/${p.img? p.img : p.image}" class="img-responsive" alt="${p.name}">
+                            </div>
+                        </div>
+                        <div class="product__item__content">
+                            <h4 class="product__item__title"><a href="product-details.html">${p.name}</a></h4>
+                            <div class="product__item__price">
+                                ${p.price} TJS
+                                ${p.discount && p.discount >= 1 ? `<del class="product__item__price__del">${p.discount} TJS</del>` : ""}
+                            </div>
+                            <a href="#" onclick="addToFavorite(${p.id},'${p.name}','${p.price}','img/shop/${p.img}')" class="drivschol-btn drivschol-btn--base">
+                                <span>В избранное</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+
+            document.getElementById("products").innerHTML = output;
+        }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+Header set X-Robots-Tag "index"
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Передаем HTTP Authorization заголовки
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+
+    # Исключаем директорию /admin
+    RewriteCond %{REQUEST_URI} !^/admin(/|$)
+
+    # Проверяем, что файл или папка не существует
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Перенаправляем остальные запросы в public/index.php
+    RewriteRule ^ public/index.php [QSA,L]
+</IfModule>

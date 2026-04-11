@@ -1,0 +1,25 @@
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+.outline:focus{
+	color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+}
+.divas{
+	margin-top: 9%;
+	width: 28%;
+}
+@media screen and (max-width: 450px){
+	.divas{
+		margin-top: 9%;
+		width: 90%;
+		font-size: 14px;
+	}
+}

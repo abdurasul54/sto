@@ -1,0 +1,18 @@
+vich_uploader:
+    db_driver: orm  
+    mappings:
+        service_image: 
+            uri_prefix: /img/services 
+            upload_destination: '%kernel.project_dir%/public/assets/img/service'  
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer  
+
+        branches_image: 
+            uri_prefix: /img/branch
+            upload_destination: '%kernel.project_dir%/public/img/branch'  
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer 
+        brand_image: 
+            uri_prefix: /img/shop
+            upload_destination: '%kernel.project_dir%/public/img/brand'  
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer 
+
+           

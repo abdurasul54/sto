@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style type="text/css">
+    /* styles.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f3f4f6;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form-step {
+    display: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.form-step.active {
+    display: block;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.next-btn, button.submit {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+button.prev-btn {
+    background-color: #ddd;
+    color: #333;
+}
+
+</style>
+<body>
+    <div class="container">
+        <form id="registrationForm">
+            <!-- Step 1 -->
+            <div class="form-step active">
+                <h2>Step 1: Basic Information</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <button type="button" class="next-btn">Next</button>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="form-step">
+                <h2>Step 2: Contact Details</h2>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="button" class="next-btn">Next</button>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="form-step">
+                <h2>Step 3: Account Setup</h2>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // script.js
+document.addEventListener('DOMContentLoaded', () => {
+    const formSteps = document.querySelectorAll('.form-step');
+    let currentStep = 0;
+
+    document.querySelectorAll('.next-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                changeStep(1);
+            }
+        });
+    });
+
+    document.querySelectorAll('.prev-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            changeStep(-1);
+        });
+    });
+
+    function changeStep(step) {
+        formSteps[currentStep].classList.remove('active');
+        currentStep += step;
+        formSteps[currentStep].classList.add('active');
+    }
+
+    function validateStep(stepIndex) {
+        const inputs = formSteps[stepIndex].querySelectorAll('input');
+        return Array.from(inputs).every(input => input.checkValidity());
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', event => {
+        event.preventDefault();
+        alert("Registration complete!");
+    });
+});
+
+    </script>
+</body>
+</html>
